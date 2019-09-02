@@ -1,22 +1,12 @@
 
 
-<div class="text-center mt-3 mb-3">
-    <form>
-        <input
-            class="rounded"
-            type="search"
-            placeholder="search..."
-            autofocus
-            (keyup)="filter = $event.target.value"    
-        >
-            
-    </form>
-</div>
+<ap-search (onTyping)="filter = $event" [value]="filter"></ap-search>
 
 <p class="text-center text-muted" *ngIf="!photos.length">
         Sorry, no photos
-    </p>
+</p>
 
-<app-photo 
-[photos] = "photos | filterByDescription: filter"
-></app-photo>
+    <app-photo 
+    [photos] = "photos | filterByDescription: filter"
+    ></app-photo>
+<app-load-button (click) = "load()" [hasMore]="hasMore" ></app-load-button>
